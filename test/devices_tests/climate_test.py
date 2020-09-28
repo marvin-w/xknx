@@ -1456,3 +1456,16 @@ class TestClimate(unittest.TestCase):
                 payload=GroupValueWrite(DPTBinary(True)),
             ),
         )
+
+    def test_unique_id(self):
+        """Test unique id functionality."""
+        xknx = XKNX()
+        climate = Climate(
+            xknx,
+            "TestClimate",
+            group_address_temperature="1/2/1",
+            group_address_target_temperature="1/2/2",
+            group_address_setpoint_shift="1/2/3",
+            temperature_step=0.3,
+        )
+        self.assertEqual(climate.unique_id, "1/2/1")

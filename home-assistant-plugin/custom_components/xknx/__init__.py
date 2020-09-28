@@ -59,6 +59,7 @@ CONF_XKNX_MCAST_GRP = "multicast_group"
 CONF_XKNX_MCAST_PORT = "multicast_port"
 CONF_XKNX_STATE_UPDATER = "state_updater"
 CONF_XKNX_RATE_LIMIT = "rate_limit"
+CONF_XKNX_USE_UNIQUE_ID = "use_unique_id"
 CONF_XKNX_EXPOSE = "expose"
 
 SERVICE_XKNX_SEND = "send"
@@ -100,6 +101,7 @@ CONFIG_SCHEMA = vol.Schema(
                     vol.Optional(CONF_XKNX_RATE_LIMIT, default=20): vol.All(
                         vol.Coerce(int), vol.Range(min=1, max=100)
                     ),
+                    vol.Optional(CONF_XKNX_USE_UNIQUE_ID, default=False): cv.boolean,
                     vol.Optional(CONF_XKNX_EXPOSE): vol.All(
                         cv.ensure_list, [ExposeSchema.SCHEMA]
                     ),
@@ -270,6 +272,7 @@ class KNXModule:
         self.hass = hass
         self.config = config
         self.connected = False
+        self.use_unique_id = config[DOMAIN][CONF_XKNX_USE_UNIQUE_ID]
         self.exposures = []
         self.service_exposures = {}
 

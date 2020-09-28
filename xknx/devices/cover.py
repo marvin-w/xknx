@@ -139,6 +139,11 @@ class Cover(Device):
             self.angle,
         )
 
+    @property
+    def unique_id(self) -> Optional[str]:
+        """Return unique id for this device."""
+        return f"{self.updown.group_address}"
+
     @classmethod
     def from_config(cls, xknx: "XKNX", name: str, config: Any) -> "Cover":
         """Initialize object from configuration structure."""
