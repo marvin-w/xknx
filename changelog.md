@@ -2,6 +2,10 @@
 
 ## 0.xx
 
+### HA integration
+
+- Add experimental (opt-in) support for unique ids
+
 ### Devices
 
 - Fan: Add "mode" parameter to control fans by steps instead of percentage.
